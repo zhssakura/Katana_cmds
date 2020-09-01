@@ -10,7 +10,7 @@ python setup.py sdist bdist_wheel
 twine upload dist/*
 songweizhi
 
-52shan88A
+shan88
 
 ################################## upload to test.PyPI ###################################
 
@@ -22,7 +22,7 @@ python setup.py sdist bdist_wheel
 twine upload --repository-url https://test.pypi.org/legacy/ dist/*
 songweizhi
 
-52shan88A
+shan88
 
 # install/upgrade BioSAK
 pip3 install --upgrade -i https://test.pypi.org/simple/ BioSAK
