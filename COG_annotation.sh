@@ -23,22 +23,7 @@ module load perl/5.20.1
 perl /srv/scratch/z5039045/Scripts/cdd2cog.pl -r ATM.tab -c /srv/scratch/z5039045/COG_annotation_db/cddid.tbl -f /srv/scratch/z5039045/COG_annotation_db/fun.txt -w /srv/scratch/z5039045/COG_annotation_db/whog
 
 
+############ here is an easy way ############
 
-# But here is an easy way:
-############ COG_wrapper.py ############
-module load python/3.5.2
-module load perl/5.20.1
-module load blast+/2.6.0
-
-python3 /srv/scratch/z5039045/Scripts/COG_wrapper.py -in input.fasta -t N
-python3 /srv/scratch/z5039045/Scripts/COG_wrapper.py -in HGT_candidates_ET_validated.fasta -t N
-
-
-cd /srv/scratch/z5039045/MetaCHIP_demo/TT_90MGs/GoodBins_0.5_0.05_MetaCHIP_wd/GoodBins_0.5_0.05_HGTs_ip90_al200bp_c70_e500bp_g15/0backup
-python3 /srv/scratch/z5039045/Scripts/COG_wrapper.py -in HGT_candidates_PG_aa.fasta -t P
-
-
-
-python3 /srv/scratch/z5039045/Scripts/COG_wrapper.py -in HGT_candidates_PG_aa.fasta -t P
-
-python3 /srv/scratch/z5039045/Scripts/COG_wrapper.py -in GoodBins_0.5_0.05_combined.faa -t P
+BioSAK COG2003 -h
+BioSAK COG2014 -h

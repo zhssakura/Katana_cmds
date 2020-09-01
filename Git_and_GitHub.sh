@@ -66,20 +66,3 @@ git rm -r --cached .idea
 git add .gitignore
 git commit -m -
 git push
-
-
-
-https://github.com/songweizhi/MetaCHIP.git
-
-
-
-
-
-
-
-
-
-git rm .DS_Store
-git add .gitignore
-git commit -m -
-git push

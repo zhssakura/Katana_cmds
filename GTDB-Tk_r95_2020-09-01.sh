@@ -33,7 +33,7 @@ module load R/3.5.3
 export GTDBTK_DATA_PATH=/data/bio/gtdbtk/release95
 
 cd /srv/scratch/z5039045/MetaCHIP_demo
-gtdbtk classify_wf --cpus 6 --pplacer_cpus 1 --genome_dir NS_37bins --extension fasta --out_dir NS_37bins_GTDB_r89 --prefix NS_37bins
+gtdbtk classify_wf --cpus 6 --pplacer_cpus 1 --genome_dir NS_37bins --extension fasta --out_dir NS_37bins_GTDB_r95 --prefix NS_37bins
 
 
 # The taxonomic classification for input genomes are in:
