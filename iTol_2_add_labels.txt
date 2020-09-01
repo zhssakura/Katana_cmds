@@ -1,0 +1,8 @@
+LABELS
+
+SEPARATOR COMMA
+
+DATA
+
+NorthSea_bin082|NorthSea_bin086,E.coli
+NorthSea_bin053|NorthSea_bin054|NorthSea_bin111|NorthSea_bin039|NorthSea_bin077,Psychrobacter
