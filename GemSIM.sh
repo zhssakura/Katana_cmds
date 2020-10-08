@@ -1,3 +1,27 @@
+
+##################################### get error model ####################################
+
+module load bowtie/2.3.5.1
+bowtie2-build -f PhiX.fasta PhiX
+bowtie2 -x PhiX -1 Undetermined_S0_L001_R1_001.fastq -2 Undetermined_S0_L001_R2_001.fastq -S PhiX.sam --no-unal --quiet --threads 12 -q
+
+module load samtools/1.10
+samtools view -bS PhiX.sam -o PhiX.bam
+samtools sort PhiX.bam -o PhiX_sorted.bam
+samtools index PhiX_sorted.bam
+
+module load python/2.7.15 
+cd /srv/scratch/z5039045/MarkerMAG_wd/phix
+python /srv/scratch/z5039045/Softwares/GemSIM_v1.6/GemErr.py -r 151 -f PhiX.fasta -s PhiX.sam -p -n phix_err 
+
+python /srv/scratch/z5039045/Softwares/GemSIM_v1.6/GemErr.py -r 151 -f PhiX.fasta -s PhiX.sam -p -n phix_2020_i5 -i 5 &
+
+
+# GemReads.py 
+cd /srv/scratch/z5039045/MetaCHIP/m30/1_GemSIM_9_million/replicate1_wd
+python /srv/scratch/z5039045/Softwares/GemSIM_v1.6/GemReads.py -R ../../input_genomes_m30 -a /srv/scratch/z5039045/MetaCHIP/m30/1_GemSIM_9_million/replicate1_wd/abundance_1.txt -m /srv/scratch/z5039045/Softwares/GemSIM_v1.6/models/ill100v5_p.gzip -o replicate_1 -q 33 -u d -s 30 -n 3000000 -l d -p
+
+
 ####################################### GenSIM_neg #######################################
 
 # load python3
@@ -159,3 +183,19 @@ python3 /srv/scratch/z5039045/Softwares/MetaCHIP/MetaCHIP.py -cfg config.txt
 # delete sam files in Step_3_Mapping.py
 # python3 /srv/scratch/z5039045/Softwares/MetaCHIP/InPrep1_Prokka.py
 # python3 /srv/scratch/z5039045/Softwares/MetaCHIP/InPrep2_BLAST.py
+
+
+
+
+module load samtools/1.10
+module load bowtie/2.3.5.1
+cd /srv/scratch/z5039045/phix
+bowtie2-build -f phix_seqs.fasta phix_seqs
+bowtie2 -x phix_seqs -1 Undetermined_S0_L001_R1_001.fastq -2 Undetermined_S0_L001_R2_001.fastq -S phix.sam -p 12 -q --no-unal
+samtools view -bS phix.sam -o phix.bam
+samtools sort phix.bam -o phix_sorted.bam
+samtools index phix_sorted.bam
+
+
+
+

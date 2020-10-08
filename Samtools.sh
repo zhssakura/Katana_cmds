@@ -1,5 +1,5 @@
 
-module load samtools/1.3.1
+module load samtools/1.10
 
 # An unmapped read whose mate is mapped.
 samtools view -u  -f 4 -F264 alignments.bam  > tmps1.bam
@@ -9,6 +9,8 @@ samtools view -u -f 8 -F 260 alignments.bam  > tmps2.bam
 
 # Both reads of the pair are unmapped
 samtools view -u -f 12 -F 256 alignments.bam > tmps3.bam
+
+
 
 
 

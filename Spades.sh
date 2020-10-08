@@ -75,6 +75,7 @@ Assembler_recovered_transfers_iden100
 
 
 
+
 cd /srv/scratch/z5039045/HgtSIM/metaspades/metaspade_70_k21-125
 python3 /srv/scratch/z5039045/HgtSIM/Assembler_recovered_transfers.py -a scaffolds.fasta -t input_sequence_mutant_nc.fasta -minf 1000
 cd /srv/scratch/z5039045/HgtSIM/metaspades/metaspade_75_k21-125

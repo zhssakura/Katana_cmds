@@ -1,5 +1,5 @@
-module load mafft/7.310
-module load fasttree/2.1.7
+module load mafft/7.407
+module load fasttree/2.1.11
 
 # run mafft
 mafft --quiet --maxiterate 1000 --thread 6 --globalpair combined_16s.fasta > combined_16s.aln 

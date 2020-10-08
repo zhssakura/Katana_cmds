@@ -23,7 +23,7 @@ fastANI --ql KelpBins_list.txt --rl KelpBins_list.txt -o KelpBins_ANI.txt -t 12
 #PBS -M weizhi.song@unsw.edu.au
 #PBS -m ae
 
-module load fastani/1.3
+module load fastani/1.1
 cd /srv/scratch/z5039045/fastani_test
 fastANI -q NorthSea_bin029.fasta -r NorthSea_bin034.fasta -o ANI_value.txt --minFrag 1 -t 6
 

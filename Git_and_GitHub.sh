@@ -13,10 +13,14 @@ https://guides.github.com/features/mastering-markdown/#what
 ##################################### Push to github #####################################
 
 # cd to the folder holds your project codes on your computer
-cd demo_pipeline
+cd MarkerMAG
 git init
 git add .
+echo '.idea' >> .gitignore
+git rm -r --cached .idea
+git add .gitignore
 git commit -m -
+
 
 # demo_pipeline
 git remote add demo_pipeline https://github.com/your_username/demo_pipeline.git
@@ -46,6 +50,9 @@ git push -u Katana_cmds master
 git remote add BioSAK https://github.com/songweizhi/BioSAK.git
 git push -u BioSAK master
 
+# LinkMAG16S
+git remote add MarkerMAG https://github.com/songweizhi/MarkerMAG.git
+git push -u MarkerMAG master
 
 ####################################### Wiki pages #######################################
 
