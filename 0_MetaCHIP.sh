@@ -219,3 +219,19 @@ MetaCHIP BP -p NorthSea_with_grouping -g NorthSea_grouping_phylum.txt -t 4 -forc
 MetaCHIP PI -i NS_37bins -g NorthSea37bins_grouping_s22.txt -p NorthSea_with_grouping -x fasta -t 12 -force
 MetaCHIP BP -p NorthSea_with_grouping -g NorthSea_grouping_phylum.txt -t 4 -force
 
+
+
+
+cd /srv/scratch/z5039045/MetaCHIP_demo/Example
+MetaCHIP PI -p test -r c -t 6 -i mags -x fasta -taxon human_gut_bins_GTDB.tsv
+MetaCHIP BP -p test -r c -t 6
+
+
+
+module load python/2.7.15 
+mkdir ~/mypythonenv_metachip
+python -m venv --system-site-packages ~/mypythonenv_metachip
+. mypythonenv_metachip/bin/activate
+pip install --upgrade MetaCHIP
+
+

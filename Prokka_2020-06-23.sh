@@ -12,7 +12,6 @@ module load bedtools/2.27.1
 module load barrnap/0.9 
 module load prokka/1.14.5
 
-
 prokka --force --prefix BAD --locustag BAD --strain BAD --outdir BAD BAD.fna
 prokka --force --prefix BAD2 --locustag BAD2 --strain BAD2 --outdir BAD2 BAD2.fna
 
@@ -40,6 +39,6 @@ prokka --force --cpus 6 --compliant --kingdom Bacteria --genus Rheinheimera --ou
 prokka --force --cpus 6 --compliant --kingdom Bacteria --genus Variovorax --outdir VR_prokka VR.fas
 
 
-Rheinheimera sp. strain RH 1-4 isolate RH CMSI.
+prokka --force --prefix DM019389 --locustag DM019389 --outdir DM019389 DM019389.fasta
+prokka --force --prefix E264 --locustag E264 --outdir E264 E264.fna
 
-Variovorax sp. strain VR 1-2 isolate VR CMSI.

@@ -28,9 +28,11 @@ module load prodigal/2.6.3
 module load pplacer/1.1.alpha19
 module load hmmer/3.3
 module load fasttree/2.1.11
+module unload gcc
 module load gcc/6.2.0
 module load gsl/2.6
 module load fastani/1.3
+module unload R
 module load R/3.5.3
 export GTDBTK_DATA_PATH=/data/bio/gtdbtk/release95
 
@@ -52,14 +54,26 @@ module load prodigal/2.6.3
 module load pplacer/1.1.alpha19
 module load hmmer/3.3
 module load fasttree/2.1.11
+module unload gcc
 module load gcc/6.2.0
 module load gsl/2.6
 module load fastani/1.3
+module unload R
 module load R/3.5.3
 export GTDBTK_DATA_PATH=/data/bio/gtdbtk/release95
 
-cd /srv/scratch/z5039045/MetaCHIP_demo
-gtdbtk identify --genome_dir NS_37bins -x fasta --out_dir NS_37bins_GTDB_r95_tree --cpus 6
-gtdbtk align --identify_dir NS_37bins_GTDB_r95_tree --out_dir NS_37bins_GTDB_r95_tree --cpus 6
-gtdbtk infer --msa_file NS_37bins_GTDB_r95_tree/gtdbtk.bac120.user_msa.fasta --out_dir NS_37bins_GTDB_r95_tree --cpus 6
+
+cd /srv/scratch/z5039045/detectCFP_wd
+gtdbtk identify --genome_dir mag_files -x fna --out_dir mag_files_GTDB_r95_tree --cpus 12
+gtdbtk align --identify_dir mag_files_GTDB_r95_tree --out_dir mag_files_GTDB_r95_tree --cpus 12
+
+# infer bacterial MAG tree
+gtdbtk infer --msa_file mag_files_GTDB_r95_tree/gtdbtk.bac120.user_msa.fasta --out_dir mag_files_GTDB_r95_tree --cpus 12 --prefix bacterial
+
+# infer archaeal MAG tree, if you have archaeal MAGs in mag_files
+gtdbtk infer --msa_file mag_files_GTDB_r95_tree/gtdbtk.ar122.user_msa.fasta --out_dir mag_files_GTDB_r95_tree --cpus 12 --prefix archaeal
+
+# the inferred trees
+mag_files_GTDB_r95_tree/archaeal.unrooted.tree
+mag_files_GTDB_r95_tree/bacterial.unrooted.tree
 

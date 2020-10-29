@@ -27,3 +27,8 @@ module load fastani/1.1
 cd /srv/scratch/z5039045/fastani_test
 fastANI -q NorthSea_bin029.fasta -r NorthSea_bin034.fasta -o ANI_value.txt --minFrag 1 -t 6
 
+
+module load fastani/1.1
+cd /srv/scratch/z5039045/test
+fastANI --refList ref_file_list.txt --ql mag_file_list.txt -o test.txt --minFrag 1 -t 12
+
