@@ -38,6 +38,7 @@ samtools sort OneHGT.bam -o OneHGT_sorted.bam
 samtools index OneHGT_sorted.bam
 
 
+
 ######################################### Biofilm ########################################
 
 module load bowtie/2.3.5.1
