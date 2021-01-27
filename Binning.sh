@@ -29,7 +29,7 @@ fastqc BBAY70_R1_Q30_P.fastq
 fastqc BBAY70_R2_Q30_P.fastq
 
 
-################################ 2 Assemble with idba_ud ################################# 
+############################### 2 Assemble with metaspades ############################### 
 
 # combine the three first reads files (there will be 5 first reads files in your case)
 cat BBAY68_R1_Q30_P.fastq BBAY69_R1_Q30_P.fastq BBAY70_R1_Q30_P.fastq > BBAY68_69_70_R1.fastq
@@ -37,16 +37,14 @@ cat BBAY68_R1_Q30_P.fastq BBAY69_R1_Q30_P.fastq BBAY70_R1_Q30_P.fastq > BBAY68_6
 # combine the three second reads files (there will be 5 second reads files in your case)
 cat BBAY68_R2_Q30_P.fastq BBAY69_R2_Q30_P.fastq BBAY70_R2_Q30_P.fastq > BBAY68_69_70_R2.fastq
 
-# convert and merge the two combined fastq files to fasta file with idba_ud. The output file will be used as input for assemble
-module load idba/1.1.3
-fq2fa --merge BBAY68_69_70_R1.fastq BBAY68_69_70_R2.fastq BBAY68_69_70.fa
+# run spades
+module load spades/3.12.0
+cd /srv/scratch/z5039045/HgtSIM/metaspades
+spades.py --meta -1 BBAY68_69_70_R1.fastq -2 BBAY68_69_70_R2.fastq -o BBAY68_69_70_spades_wd -k 21,33,55,75,99,127
 
-# run idba_ud, assembled contigs will be in the combined_k20-100/scaffold.fa file 
-module load idba/1.1.3
-idba_ud --pre_correction --num_threads 3 --mink 20 --maxk 100 --step 20 --read BBAY68_69_70.fa --out combined_k20-100
 
 # remove short contigs (2500bp) from the scaffold.fa file with the select_contig.pl script
-perl select_contig.pl -m 2500 scaffold.fa BBAY68_69_70_K20-100_scaffold_lt2500.fa
+perl select_contig.pl -m 2500 scaffolds.fasta BBAY68_69_70_K20-100_scaffold_lt2500.fa
 
 # get contig statistics with get_fasta_stats.pl scripts
 perl get_fasta_stats.pl -T BBAY68_69_70_K20-100_scaffold_lt2500.fa
@@ -105,7 +103,7 @@ module load mycc/20170301
 MyCC.py BBAY68_69_70_K20-100_scaffold_lt2500.fa -a BBAY68_69_70_depth.txt 56mer
 
 
-################################### 5 Binning_refiner #################################### 
+############################# 5 Binning_refiner (or DAS_tool) ############################ 
 
 # refine genome bins
 Binning_refiner -i input_bin_folder -p Refined -plot

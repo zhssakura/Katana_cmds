@@ -12,6 +12,7 @@ songweizhi
 
 shan88
 
+
 ################################## upload to test.PyPI ###################################
 
 cd /Users/songweizhi/PycharmProjects/MarkerMAG
@@ -29,17 +30,18 @@ pip3 install --upgrade -i https://test.pypi.org/simple/ MarkerMAG
 MarkerMAG -h
 
 
-##########################################################################################
-###################################### install BioSAK ####################################
-##########################################################################################
+#################################### install MarkerMAG ###################################
 
-module load python/3.7.3
-mkdir ~/mypython3env
-python3 -m venv --system-site-packages ~/mypython3env
-source ~/mypython3env/bin/activate
+module load python/3.6.5
+mkdir ~/mypython365env
+python3 -m venv --system-site-packages ~/mypython365env
+source ~/mypython365env/bin/activate
 
-pip3 install MarkerMAG
 pip3 install --upgrade MarkerMAG
+pip3 install --upgrade -i https://test.pypi.org/simple/ MarkerMAG
+
+
+###################################### run MarkerMAG #####################################
 
 
 

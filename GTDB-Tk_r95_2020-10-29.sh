@@ -62,7 +62,6 @@ module unload R
 module load R/3.5.3
 export GTDBTK_DATA_PATH=/data/bio/gtdbtk/release95
 
-
 cd /srv/scratch/z5039045/detectCFP_wd
 gtdbtk identify --genome_dir mag_files -x fna --out_dir mag_files_GTDB_r95_tree --cpus 12
 gtdbtk align --identify_dir mag_files_GTDB_r95_tree --out_dir mag_files_GTDB_r95_tree --cpus 12
@@ -76,4 +75,3 @@ gtdbtk infer --msa_file mag_files_GTDB_r95_tree/gtdbtk.ar122.user_msa.fasta --ou
 # the inferred trees
 mag_files_GTDB_r95_tree/archaeal.unrooted.tree
 mag_files_GTDB_r95_tree/bacterial.unrooted.tree
-

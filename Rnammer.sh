@@ -8,3 +8,5 @@ module load perl/5.20.1
 module load rnammer/1.2
 
 perl /share/apps/rnammer/1.2/rnammer -S bac -m lsu,ssu,tsu -f fasta-file -gff - < /srv/scratch/z5039045/rnammer/example/ecoli.fsa
+
+/apps/rnammer/1.2/rnammer -h

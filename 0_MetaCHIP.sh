@@ -118,7 +118,9 @@ export PATH=/Users/songweizhi/Softwares/FastTree/bin
 MetaCHIP PI -i NS_37bins -taxon NorthSea_GTDB.tsv -p NorthSea -r p -x fasta -t 4
 
 
-module unload python
+
+#################################### rewrite MetaCHIP ####################################
+
 module load python/3.7.3
 source ~/mypython3env/bin/activate
 module load hmmer/3.2.1
@@ -127,111 +129,62 @@ module load fasttree/2.1.10
 module load R/3.5.3
 module load blast+/2.9.0
 module load prodigal/2.6.3
+cd /srv/scratch/z5039045/MetaCHIP_demo
+MetaCHIP PI -i NS_37bins -taxon NorthSea_GTDB.tsv -p NorthSea37bins -r pcofgs -x fasta -t 12 -force
+MetaCHIP BP -p NorthSea37bins -r pcofgs -t 12
 
-cd /srv/scratch/z5039045/XiyangDong
-MetaCHIP PI -i 43bins -taxon 43bin_gtdbtk.ar.bac.summary.tsv -p Dong43bins -r pcofg -x fasta -qsub -t 12 -blastn_js_header blastn_js_header.sh
-MetaCHIP BP -p Dong43bins -r pcof -t 12
-MetaCHIP PI -i 43bins -taxon 43bin_gtdbtk.ar.bac.summary.tsv -p Dong-43bins -r pcofg -x fasta -qsub -t 12 -blastn_js_header blastn_js_header.sh
-MetaCHIP BP -p Dong-43bins -r pcof -t 12
-MetaCHIP PI -i 300_fixed_bins_renamed -taxon 300bin_gtdbtk_ar_bac_summary.tsv -p Dong300bins -r pcofg -x fasta -t 12 -blastn_js_header blastn_js_header.sh
-MetaCHIP BP -p Dong300bins -r pcofg -t 12 -tmp
-
-
-cd /srv/scratch/z5039045/MetaCHIP_demo/MetaCHIP_Zhihua
-MetaCHIP PI -p Doubanjiang -r c -t 6 -i dereplicated_genomes -x fa -taxon GTDB_TK.csv
-MetaCHIP BP -p Doubanjiang -r c -t 6
-cd /srv/scratch/z5039045/MetaCHIP_demo/MetaCHIP_Zhihua
-MetaCHIP PI -p Doubanjiang -r pg -t 12 -i dereplicated_genomes -x fa -taxon GTDB_TK.csv
-MetaCHIP BP -p Doubanjiang -r pg -t 12
+# test
+MetaCHIP PI -i NS_37bins_test -taxon NorthSea_GTDB_test.tsv -p NorthSea37bins_test -r pcofgs -x fasta -t 12 -force
+MetaCHIP BP -p NorthSea37bins_test -r pcofgs -t 12
 
 
-#################################### rewrite MetaCHIP ####################################
-
-export PATH=/Users/songweizhi/Softwares/Prodigal:$PATH
-export PATH=/Users/songweizhi/Softwares/FastTree/bin:$PATH
-export PATH=/Users/songweizhi/Softwares/ncbi-blast-2.10.1+/bin:$PATH
-export PATH=/Users/songweizhi/Softwares/hmmer/hmmer-3.1b2-macosx-intel/binaries:$PATH
-
-# dpcofgs
-cd /Users/songweizhi/Desktop/MetaCHIP_test
-python ~/PycharmProjects/MetaCHIP/MetaCHIP/PI.py -p NorthSea -r dpcofgs -t 4 -i NS_37bins -taxon NorthSea_GTDB.tsv  -x fasta  -force
-python ~/PycharmProjects/MetaCHIP/MetaCHIP/BP.py -p NorthSea -r dpcofgs -t 4 -force
-
-# dpcs
-cd /Users/songweizhi/Desktop/MetaCHIP_test
-python ~/PycharmProjects/MetaCHIP/MetaCHIP/PI.py -i NS_37bins -taxon NorthSea_GTDB.tsv -p NorthSea -r dpcs -x fasta -t 4 -force
-python ~/PycharmProjects/MetaCHIP/MetaCHIP/BP.py -p NorthSea -r dpcs -t 4 -force
-
-# MAG_grouping.txt
-cd /Users/songweizhi/Desktop/MetaCHIP_test
-python ~/PycharmProjects/MetaCHIP/MetaCHIP/PI.py -i NS_37bins -g MAG_grouping.txt -p NorthSea_with_grouping -x fasta -t 4 -force
-python ~/PycharmProjects/MetaCHIP/MetaCHIP/BP.py -p NorthSea_with_grouping -g MAG_grouping.txt -t 4 -force
-
-python ~/PycharmProjects/MetaCHIP/MetaCHIP/BP.py -p NorthSea_with_grouping -g NorthSea_grouping_phylum.txt -t 4 -force
-python ~/PycharmProjects/MetaCHIP/MetaCHIP/BP.py -p NorthSea_with_grouping -g NorthSea_grouping_species.txt -t 4 -force
-python ~/PycharmProjects/MetaCHIP/MetaCHIP/BP.py -p NorthSea_with_grouping -g NorthSea_grouping_phylum_test.txt -t 4 -force
-
-
-# on Katana
-module load python/3.7.3
-source ~/mypython3env_MetaCHIP/bin/activate
-pip install --upgrade -i https://test.pypi.org/simple/ MetaCHIP
-
+##################################### MetaCHIP debug #####################################
 
 module load python/3.7.3
-source ~/mypython3env_MetaCHIP/bin/activate
-
-module load hmmer/3.2.1
+source ~/mypython3env/bin/activate
+module unload hmmer
+module load hmmer/3.3
 module load mafft/7.407
 module load fasttree/2.1.10
-module load R/3.5.3
+module load R/3.6.1
 module load blast+/2.9.0
 module load prodigal/2.6.3
 
-cd /srv/scratch/z5039045/MetaCHIP_demo
-MetaCHIP PI -i NS_37bins -taxon NorthSea_GTDB.tsv -p NorthSea37bins -r dpcofgs -x fasta -t 12 -force
-MetaCHIP BP -p NorthSea37bins -r dpcofgs -t 12
+cd /srv/scratch/z5039045/MetaCHIP_debug
+MetaCHIP PI -p dataset -r p -t 16 -i genomes_fasta -x fasta -taxon gtdbk_taxonomy.tsv -force
+
+MetaCHIP BP -p dataset -r p -t 16
+
+
+
+cd /srv/scratch/z5039045/MetaCHIP_demo/NorthSea18bins_MetaCHIP_wd/NorthSea18bins_pcofg_blastdb/000
+makeblastdb -in NorthSea18bins_pcofg_combined_ffn.fasta -dbtype nucl -parse_seqids -logfile /dev/null
+
+
+cd /srv/scratch/z5039045/MetaCHIP_debug/dataset_MetaCHIP_wd/dataset_p_blastdb
+makeblastdb -in dataset_p_combined_ffn.fasta -dbtype nucl -parse_seqids
+
+ -logfile /dev/null
 
 
 cd /srv/scratch/z5039045/MetaCHIP_demo
-MetaCHIP PI -i NS_37bins -taxon NorthSea_GTDB.tsv -p NorthSea37bins -r d -x fasta -t 12 -force
-MetaCHIP BP -p NorthSea37bins -r d -t 12
+#MetaCHIP PI -i NS_18bins -taxon NorthSea_GTDB.tsv -p NorthSea18bins -r pcofg -x fasta -t 12
+MetaCHIP PI -i NS_18bins -taxon NorthSea_GTDB.tsv -p NorthSea18bins -r pcofg -x fasta -t 12
 
-cd /srv/scratch/z5039045/MetaCHIP_demo
-MetaCHIP PI -i NS_37bins -taxon NorthSea_GTDB.tsv -p NorthSea37bins -r p -x fasta -t 12 -force
-MetaCHIP BP -p NorthSea37bins -r p -t 12
 
-cd /srv/scratch/z5039045/MetaCHIP_demo
-MetaCHIP PI -i NS_37bins -taxon NorthSea_GTDB.tsv -p NorthSea37bins -r s -x fasta -t 12 -force
-MetaCHIP BP -p NorthSea37bins -r s -t 12
+##################################### MetaCHIP debug #####################################
 
-cd /srv/scratch/z5039045/MetaCHIP_demo
-MetaCHIP PI -i NS_37bins -taxon NorthSea_GTDB.tsv -p NorthSea37bins -r ds -x fasta -t 12 -force
-MetaCHIP BP -p NorthSea37bins -r ds -t 12
+# Bio.Alphabet has been removed from Biopython 
 
-cd /srv/scratch/z5039045/MetaCHIP_demo
-MetaCHIP PI -i NS_37bins -taxon NorthSea_GTDB.tsv -p NorthSea37bins -r ds -x fasta -t 12 -force
-MetaCHIP BP -p NorthSea37bins -r ds -t 12
+pip install --upgrade biopython
 
-MetaCHIP PI -i NS_37bins -g NorthSea_grouping_phylum.txt -p NorthSea_with_grouping -x fasta -t 12 -force
-MetaCHIP BP -p NorthSea_with_grouping -g NorthSea_grouping_phylum.txt -t 4 -force
 
-MetaCHIP PI -i NS_37bins -g NorthSea37bins_grouping_s22.txt -p NorthSea_with_grouping -x fasta -t 12 -force
-MetaCHIP BP -p NorthSea_with_grouping -g NorthSea_grouping_phylum.txt -t 4 -force
+# NS_18bins
+MetaCHIP PI -i NS_18bins/ -taxon NorthSea_GTDB.tsv -p NorthSea18bins -r pcofg -x fasta -t 12
+MetaCHIP BP -p NorthSea18bins -r pcofg -t 12 -tmp
 
 
 
 
-cd /srv/scratch/z5039045/MetaCHIP_demo/Example
-MetaCHIP PI -p test -r c -t 6 -i mags -x fasta -taxon human_gut_bins_GTDB.tsv
-MetaCHIP BP -p test -r c -t 6
-
-
-
-module load python/2.7.15 
-mkdir ~/mypythonenv_metachip
-python -m venv --system-site-packages ~/mypythonenv_metachip
-. mypythonenv_metachip/bin/activate
-pip install --upgrade MetaCHIP
 
 

@@ -42,3 +42,5 @@ prokka --force --cpus 6 --compliant --kingdom Bacteria --genus Variovorax --outd
 prokka --force --prefix DM019389 --locustag DM019389 --outdir DM019389 DM019389.fasta
 prokka --force --prefix E264 --locustag E264 --outdir E264 E264.fna
 
+cd /srv/scratch/z5039045
+prokka --force --metagenome --prefix NorthSea_bin054 --locustag NorthSea_bin054 --strain NorthSea_bin054 --outdir NorthSea_bin054 NorthSea_bin054.fasta

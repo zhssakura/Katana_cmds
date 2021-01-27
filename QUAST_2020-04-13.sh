@@ -4,4 +4,4 @@ module load quast/5.0.2
 
 quast.py assemblies.fas -o assemblies.fas.quast
 
-
+quast.py MBARC26_R1_0.03.fasta -o MBARC26_R1_0.03.fasta.quast

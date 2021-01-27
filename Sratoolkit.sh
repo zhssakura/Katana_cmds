@@ -1,3 +1,11 @@
+
+module load sratoolkit/2.9.6-1
+fastq-dump --gzip --split-files SRR3656745 -O /srv/scratch/z5039045/MarkerMAG_wd/MBARC26
+
+
+wget ftp://ftp-trace.ncbi.nih.gov/sra/sra-instant/reads/ByRun/sra/SRR/SRR365/SRR3656745/SRR3656745.sra
+
+
 sratoolkit
 
 # download fastq file with fastq-dump

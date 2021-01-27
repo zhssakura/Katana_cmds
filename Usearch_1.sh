@@ -31,6 +31,14 @@ cd /srv/scratch/z5039045/usearch_test/tree_subset
 
 
 
+###################################### fastq to fasta ######################################
+
+module load usearch/11.0.667
+usearch -fastq_filter GI_R1_10000000.fastq -fastaout GI_R1_10000000.fasta
+usearch -fastq_filter GI_R1_10000000.fastq -fastaout GI_R1_10000000——2.fasta -fastq_ascii 64
+    
+  usearch -fastq_filter reads.fastq -fastaout reads.fasta -fastq_ascii 64
+
 
 ######################################### UCLUST #########################################
 

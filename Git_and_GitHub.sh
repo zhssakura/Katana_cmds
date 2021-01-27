@@ -13,7 +13,7 @@ https://guides.github.com/features/mastering-markdown/#what
 ##################################### Push to github #####################################
 
 # cd to the folder holds your project codes on your computer
-cd MarkerMAG
+cd /Users/songweizhi/PycharmProjects/detectCFP
 git init
 git add .
 echo '.idea' >> .gitignore
@@ -53,6 +53,11 @@ git push -u BioSAK master
 # LinkMAG16S
 git remote add MarkerMAG https://github.com/songweizhi/MarkerMAG.git
 git push -u MarkerMAG master
+
+# detectCFP
+git remote add detectCFP https://github.com/songweizhi/detectCFP.git
+git push -u detectCFP master
+
 
 ####################################### Wiki pages #######################################
 

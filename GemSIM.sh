@@ -1,4 +1,18 @@
 
+module load python/2.7.15 
+cd /srv/scratch/z5039045/GemSIM_test
+python /srv/scratch/z5039045/Softwares/GemSIM_v1.6/GemReads.py -R ../../input_genomes_m30 -a /srv/scratch/z5039045/MetaCHIP/m30/1_GemSIM_9_million/replicate1_wd/abundance_1.txt -m /srv/scratch/z5039045/Softwares/GemSIM_v1.6/models/ill100v5_p.gzip -o replicate_1 -q 33 -u d -s 30 -n 3000000 -l d -p
+
+python /srv/scratch/z5039045/Softwares/GemSIM_v1.6/GemReads.py -r o1.fna -m /srv/scratch/z5039045/Softwares/GemSIM_v1.6/models/ill100v5_p.gzip -o o1 -q 33 -u d -s 30 -n 3000000 -l d -p
+
+
+
+
+
+
+
+
+
 ##################################### get error model ####################################
 
 module load bowtie/2.3.5.1
