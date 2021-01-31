@@ -104,14 +104,6 @@ samtools index TwoHGTs_sorted.bam
 
 
 
-
-
-
-
-
-
-
-
 module load samtools/0.1.19
 module load bedtools/2.27.1
 module load gcc/7.3.0

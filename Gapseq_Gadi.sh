@@ -103,7 +103,6 @@ git clone https://github.com/jotech/gapseq && cd gapseq
 
 module load pangeo/2020.05
 source ~/mypython3env/bin/activate
-module load R/4.0.0
 module load bedtools/2.28.0
 module load intel-compiler/2020.2.254
 module load blast/2.10.1
@@ -114,7 +113,8 @@ export PATH=/scratch/du5/wzs561/software/glpk-4.65/bin:$PATH
 export PATH=/scratch/du5/wzs561/software/glpk-4.65/src:$PATH
 export PATH=/scratch/du5/wzs561/software/exonerate-2.2.0-x86_64/bin:$PATH
 export PATH=/scratch/du5/wzs561/software/gapseq:$PATH
-cd /scratch/du5/wzs561/gapseq_test
+module load R/4.0.0
+cd /scratch/du5/wzs561/Test_gapseq
 gapseq find -p carbo -b 100 ecoli_1.fna > ecoli_1-carbo-stdout.txt
 gapseq find -p carbo -b 100 ecoli_2.fna > ecoli_2-carbo-stdout.txt
 gapseq find -p carbo -b 100 ecoli_3.fna > ecoli_3-carbo-stdout.txt
@@ -125,6 +125,28 @@ gapseq find -p carbo -b 100 ecoli_4.fna > ecoli_4-carbo-stdout.txt
 gapseq find -p carbo -b 100 ecoli_1.fna > ecoli_1-carbo-stdout.txt
 gapseq find -p carbo -b 100 ecoli_2.fna > ecoli_2-carbo-stdout.txt
 gapseq find -p carbo -b 100 ecoli_3.fna > ecoli_3-carbo-stdout.txt
+
+
+# on Katana
+module load python/3.7.3
+module load perl/5.28.0
+module load blast+/2.10.1
+module load hmmer/3.3
+module load prodigal/2.6.3
+module load git/2.22.0
+module load bedtools/2.27.1
+module load glpk/4.65
+module load barrnap/0.9
+module load gcc/7.3.0
+module load exonerate/2.2.0
+# module load parallel/20190522
+module load parallel/20200722
+module unload R
+module load R/3.6.1
+module load cplex/12.9.0-academic  
+export PATH=/srv/scratch/z5039045/Softwares/gapseq2021:$PATH
+cd /srv/scratch/z5039045/Test_gapseq
+gapseq find -p carbo -b 100 ecoli_1.fna > ecoli_1-carbo-stdout.txt
 
 
 ###################################### run detectCFP #####################################
