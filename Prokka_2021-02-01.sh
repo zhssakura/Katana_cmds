@@ -5,7 +5,7 @@ module load infernal/1.1.2
 module load blast+/2.9.0 
 module load hmmer/3.2.1
 module load prodigal/2.6.3
-module load tbl2asn/25.8
+module load tbl2asn/20200706
 module load parallel/20190522 
 module load aragorn/1.2.38 
 module load bedtools/2.27.1
