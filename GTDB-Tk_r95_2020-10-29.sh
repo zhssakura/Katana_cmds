@@ -19,7 +19,7 @@ pip3 install --upgrade gtdbtk
 
 ########################## Taxonomic classification with GTDB-TK #########################
 
-# please request at least 180 Gbp memories for the classify_wf module !!!
+# !!! please request at least 180 GB of memory for the classify_wf module !!!
 
 module load python/3.7.3
 source ~/mypython3env/bin/activate
@@ -42,7 +42,7 @@ gtdbtk classify_wf --cpus 6 --pplacer_cpus 1 --genome_dir NS_37bins --extension 
 cd /srv/scratch/z5039045/MarkerMAG_wd/Kelp
 gtdbtk classify_wf --cpus 6 --pplacer_cpus 1 --genome_dir BH_ER_050417_refined_bins --extension fasta --out_dir BH_ER_050417_GTDB_r95 --prefix BH_ER_050417
 
-# The taxonomic classification for input genomes are in:
+# Taxonomic classifications for input genomes are in:
 # <prefix>.bac120.summary.tsv
 # <prefix>.ar122.summary.tsv
 
