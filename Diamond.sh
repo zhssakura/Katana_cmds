@@ -1,5 +1,5 @@
 
-module load diamond/0.9.24
+module load diamond/0.9.31
 
 # make diamond db
 cd /srv/scratch/z5039045/KEGG_DB/kegg_genes_for_Blastp

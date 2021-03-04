@@ -36,13 +36,14 @@ makeblastdb -in SILVA_138_SSURef_NR99_tax_silva_BLCAparsed.fasta -dbtype nucl -p
 
 mkdir /srv/scratch/z5039045/Softwares/BLCA/db_GTDB_SSU
 cd /srv/scratch/z5039045/Softwares/BLCA/db_GTDB_SSU
-wget https://data.ace.uq.edu.au/public/gtdb/data/releases/release89/89.0/ar122_ssu_r89.fna
-wget https://data.ace.uq.edu.au/public/gtdb/data/releases/release89/89.0/bac120_ssu_r89.fna
-cat bac120_ssu_r89.fna ar122_ssu_r89.fna > GTDB_bac120_ar122_ssu_r89.fna
+wget https://data.gtdb.ecogenomic.org/releases/release95/95.0/genomic_files_all/ssu_all_r95.tar.gz
+module load python/3.7.3
+source ~/mypython3env/bin/activate
+BioSAK GTDB_for_BLCA -GTDB_ssu ssu_all_r95.fna
 
 # Prepare BLCA-compatible GTDB SSU database with BioSAK
 module load python/3.7.3
-source ~/mypython3env_BLCA/bin/activate
+source ~/mypython3env/bin/activate
 BioSAK GTDB_for_BLCA -GTDB_ssu GTDB_bac120_ar122_ssu_r89.fna 
 # output files:
 # GTDB_bac120_ar122_ssu_r89_BLCAparsed.taxonomy
@@ -50,7 +51,8 @@ BioSAK GTDB_for_BLCA -GTDB_ssu GTDB_bac120_ar122_ssu_r89.fna
 
 # format the fasta file
 module load blast+/2.9.0
-makeblastdb -in GTDB_bac120_ar122_ssu_r89_BLCAparsed.fasta -dbtype nucl -parse_seqids -out GTDB_bac120_ar122_ssu_r89_BLCAparsed.fasta
+makeblastdb -in ssu_all_r95_BLCAparsed.fasta -dbtype nucl -parse_seqids -out ssu_all_r95_BLCAparsed.fasta
+
 
 
 ########################### run BLCA against SILVA SSU database ##########################
@@ -73,8 +75,11 @@ module load muscle/3.8.31
 module load clustalo/1.2.4
 cd /srv/scratch/z5039045/Softwares/BLCA/wd_tmp
 python3 /srv/scratch/z5039045/Softwares/BLCA/2.blca_main.py -r /srv/scratch/z5039045/Softwares/BLCA/db_GTDB_SSU/GTDB_bac120_ar122_ssu_r89_BLCAparsed.taxonomy -q /srv/scratch/z5039045/Softwares/BLCA/db_GTDB_SSU/GTDB_bac120_ar122_ssu_r89_BLCAparsed.fasta -i test.fasta
-
 python3 /srv/scratch/z5039045/Softwares/BLCA/2.blca_main.py -r /srv/scratch/z5039045/Softwares/BLCA/db_GTDB_SSU/GTDB_bac120_ar122_ssu_r89_BLCAparsed.taxonomy -q /srv/scratch/z5039045/Softwares/BLCA/db_GTDB_SSU/GTDB_bac120_ar122_ssu_r89_BLCAparsed.fasta -i AllSamples_unoise_nc.fasta
+
+cd /srv/scratch/z5039045/MarkerMAG_wd/Kelp/BH_ER_050417_Matam16S_wd
+python3 /srv/scratch/z5039045/Softwares/BLCA/2.blca_main.py -r /srv/scratch/z5039045/Softwares/BLCA/db_GTDB_SSU/ssu_all_r95_BLCAparsed.taxonomy -q /srv/scratch/z5039045/Softwares/BLCA/db_GTDB_SSU/ssu_all_r95_BLCAparsed.fasta -i BH_ER_050417_assembled_16S_uclust_0.999.fasta
+
 
 
 
@@ -82,10 +87,7 @@ cd /srv/scratch/z5039045/Jadi
 module load blast+/2.9.0
 makeblastdb -in D2_16S_rRNA.fasta -dbtype nucl -parse_seqids -out D2_16S_rRNA.fasta
 python3 /srv/scratch/z5039045/Softwares/BLCA/2.blca_main.py -r D2_16S_rRNA.taxonomy -q D2_16S_rRNA.fasta -i AllSamples_unoise_nc.fasta -o AllSamples_unoise_nc_BLCA_out.1.txt
-
 python3 /srv/scratch/z5039045/Softwares/BLCA/2.blca_main.py -r D2_16S_rRNA.taxonomy -q D2_16S_rRNA.fasta -i AllSamples_unoise_nc.fasta
-
-
 python3 /srv/scratch/z5039045/Softwares/BLCA/2.blca_main.py -r D2_16S_rRNA.taxonomy -q D2_16S_rRNA.fasta -i AllSamples_unoise_nc.fasta
 
 

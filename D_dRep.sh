@@ -46,3 +46,22 @@ module load prodigal/2.6.3
 module load mash/2.1
 module load gani/1
 export PATH=/home/z5039045/Software/MUMmer3.23:$PATH
+
+
+
+
+
+
+
+
+
+
+module load python/3.7.3
+source ~/mypython3env/bin/activate
+module load perl/5.28.0
+module load prodigal/2.6.3
+module load mash/2.1
+module load gani/1
+export PATH=/home/z5039045/Software/MUMmer3.23:$PATH
+cd /srv/scratch/z5039045/get_bin_depth_wd
+dRep dereplicate Kelp_dRep99_wd -g GoodBins_0.5_0.05_prefixed/*.fasta -pa 0.9 -sa 0.99 --genomeInfo Kelp_bin_qualities.txt -comp 50 -p 12
