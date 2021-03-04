@@ -34,23 +34,21 @@ makeblastdb -in SILVA_138_SSURef_NR99_tax_silva_BLCAparsed.fasta -dbtype nucl -p
 
 ############################### prepare GTDB SSU database ################################
 
+# download GTDB SSU sequences
 mkdir /srv/scratch/z5039045/Softwares/BLCA/db_GTDB_SSU
 cd /srv/scratch/z5039045/Softwares/BLCA/db_GTDB_SSU
 wget https://data.gtdb.ecogenomic.org/releases/release95/95.0/genomic_files_all/ssu_all_r95.tar.gz
 tar xvzf ssu_all_r95.tar.gz
+
+# format downloaded sequences with BioSAK
 module load python/3.7.3
 source ~/mypython3env/bin/activate
 BioSAK GTDB_for_BLCA -GTDB_ssu ssu_all_r95.fna
-
-# Prepare BLCA-compatible GTDB SSU database with BioSAK
-module load python/3.7.3
-source ~/mypython3env/bin/activate
-BioSAK GTDB_for_BLCA -GTDB_ssu GTDB_bac120_ar122_ssu_r89.fna 
 # output files:
-# GTDB_bac120_ar122_ssu_r89_BLCAparsed.taxonomy
-# GTDB_bac120_ar122_ssu_r89_BLCAparsed.fasta
+# ssu_all_r95_BLCAparsed.fasta
+# ssu_all_r95_BLCAparsed.taxonomy
 
-# format the fasta file
+# make blast db with formatted sequences
 module load blast+/2.9.0
 makeblastdb -in ssu_all_r95_BLCAparsed.fasta -dbtype nucl -parse_seqids -out ssu_all_r95_BLCAparsed.fasta
 
