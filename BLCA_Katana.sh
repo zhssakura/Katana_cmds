@@ -2,9 +2,9 @@
 ################################# install BLCA on Katana #################################
 
 module load python/3.7.3
-mkdir ~/mypython3env_BLCA
-python3 -m venv --system-site-packages ~/mypython3env_BLCA
-source ~/mypython3env_BLCA/bin/activate
+mkdir ~/mypython3env
+python3 -m venv --system-site-packages ~/mypython3env
+source ~/mypython3env/bin/activate
 pip3 install --upgrade BioSAK
 
 # Download BLCA scripts to Katana (change zID to yours)
@@ -21,7 +21,7 @@ gunzip SILVA_138_SSURef_NR99_tax_silva.fasta.gz
 
 # Prepare BLCA-compatible SILVA SSU database with BioSAK
 module load python/3.7.3
-source ~/mypython3env_BLCA/bin/activate
+source ~/mypython3env/bin/activate
 BioSAK SILVA_for_BLCA -SILVA_ssu SILVA_138_SSURef_NR99_tax_silva.fasta
 # output files:
 # SILVA_138_SSURef_NR99_tax_silva_BLCAparsed.fasta
@@ -58,7 +58,7 @@ makeblastdb -in ssu_all_r95_BLCAparsed.fasta -dbtype nucl -parse_seqids -out ssu
 ########################### run BLCA against SILVA SSU database ##########################
 
 module load python/3.7.3
-source ~/mypython3env_BLCA/bin/activate
+source ~/mypython3env/bin/activate
 module load blast+/2.9.0
 module load muscle/3.8.31
 module load clustalo/1.2.4
@@ -73,13 +73,9 @@ source ~/mypython3env_BLCA/bin/activate
 module load blast+/2.9.0
 module load muscle/3.8.31
 module load clustalo/1.2.4
-cd /srv/scratch/z5039045/Softwares/BLCA/wd_tmp
-python3 /srv/scratch/z5039045/Softwares/BLCA/2.blca_main.py -r /srv/scratch/z5039045/Softwares/BLCA/db_GTDB_SSU/GTDB_bac120_ar122_ssu_r89_BLCAparsed.taxonomy -q /srv/scratch/z5039045/Softwares/BLCA/db_GTDB_SSU/GTDB_bac120_ar122_ssu_r89_BLCAparsed.fasta -i test.fasta
-python3 /srv/scratch/z5039045/Softwares/BLCA/2.blca_main.py -r /srv/scratch/z5039045/Softwares/BLCA/db_GTDB_SSU/GTDB_bac120_ar122_ssu_r89_BLCAparsed.taxonomy -q /srv/scratch/z5039045/Softwares/BLCA/db_GTDB_SSU/GTDB_bac120_ar122_ssu_r89_BLCAparsed.fasta -i AllSamples_unoise_nc.fasta
 
 cd /srv/scratch/z5039045/MarkerMAG_wd/Kelp/BH_ER_050417_Matam16S_wd
 python3 /srv/scratch/z5039045/Softwares/BLCA/2.blca_main.py -r /srv/scratch/z5039045/Softwares/BLCA/db_GTDB_SSU/ssu_all_r95_BLCAparsed.taxonomy -q /srv/scratch/z5039045/Softwares/BLCA/db_GTDB_SSU/ssu_all_r95_BLCAparsed.fasta -i BH_ER_050417_assembled_16S_uclust_0.999.fasta
-
 
 
 
